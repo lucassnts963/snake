@@ -28,25 +28,22 @@ class Snake:
         step = config.size_rect
         if self.direction == UP:
             pos = (self.body[0][0], self.body[0][1]-step)
-            self.get_collision_tail(pos)
             self.body[0] = pos
         if self.direction == DOWN:
             pos = (self.body[0][0], self.body[0][1]+step)
-            self.get_collision_tail(pos)
             self.body[0] = pos
         if self.direction == RIGHT:
             pos = (self.body[0][0]+step, self.body[0][1])
-            self.get_collision_tail(pos)
             self.body[0] = pos
         if self.direction == LEFT:
             pos = (self.body[0][0]-step, self.body[0][1])
-            self.get_collision_tail(pos)
             self.body[0] = pos
+        
+        self.get_collision()
         
         for i in range(len(self.body)-1, 0, -1):
             self.body[i] = self.body[i-1]
             
-        self.get_collision()
         self.eat(self.game.food)
         self.draw()
     
@@ -74,8 +71,13 @@ class Snake:
             self.restart()
         if self.body[0][1] < 0:
             self.restart()
+        for i in range(1, len(self.body) - 1):
+            if self.body[0][0] == self.body[i][0] and self.body[0][1] == self.body[i][1]:
+                self.restart()
+                break
             
     def get_collision_tail(self, pos):
-        for i in self.body:
-            if pos == self.body[0]:
+        for i in range(1, len(self.body)-1):
+            print(len(self.body)-1)
+            if pos == self.body[i]:
                 self.restart()

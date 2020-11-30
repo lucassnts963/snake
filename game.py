@@ -25,6 +25,9 @@ class Game:
             self.screen.fill(config.colors['black'])
             self.snake.update()
             self.food.draw()
+            self.show_score()
+            
+            self.machine_playing()
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT: sys.exit()
@@ -43,4 +46,17 @@ class Game:
     
             pygame.display.flip()
             pygame.display.update()
-            
+    
+    def show_score(self):
+        font = pygame.font.Font('freesansbold.ttf', 18)
+        score_font = font.render('Score: %s' % (self.snake.score), True, config.colors['white'])
+        score_rect = score_font.get_rect()
+        score_rect.topleft = (config.screen_size[0] - 120, 10)
+        self.screen.blit(score_font, score_rect)
+        
+    def machine_playing(self):
+        pass
+
+game = Game()
+
+game.main()
