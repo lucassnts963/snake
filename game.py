@@ -33,13 +33,17 @@ class Game:
                 if event.type == pygame.QUIT: sys.exit()
                 
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_DOWN:
+                    if (event.key == pygame.K_DOWN and 
+                        self.snake.direction != self.snake.accepted_directions['up']):
                         self.snake.change_direction(self.snake.accepted_directions['down'])
-                    if event.key == pygame.K_UP:
+                    if (event.key == pygame.K_UP and
+                        self.snake.direction != self.snake.accepted_directions['down']):
                         self.snake.change_direction(self.snake.accepted_directions['up'])
-                    if event.key == pygame.K_RIGHT:
+                    if (event.key == pygame.K_RIGHT and
+                        self.snake.direction != self.snake.accepted_directions['left']):
                         self.snake.change_direction(self.snake.accepted_directions['right'])
-                    if event.key == pygame.K_LEFT:
+                    if (event.key == pygame.K_LEFT and 
+                        self.snake.direction != self.snake.accepted_directions['right']):
                         self.snake.change_direction(self.snake.accepted_directions['left'])
                     
             clock.tick(15)
