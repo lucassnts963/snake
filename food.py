@@ -9,8 +9,8 @@ config = Configuration()
 #Object that represent the food
 class Food:
     def __init__(self, game):
-        x = rd.randint(0,config.screen_size[0]/config.size_rect-1) * config.size_rect
-        y = rd.randint(0,config.screen_size[0]/config.size_rect-1) * config.size_rect
+        x = rd.randint(0, config.screen_size[0] // config.size_rect - 1) * config.size_rect
+        y = rd.randint(0, config.screen_size[1] // config.size_rect - 1) * config.size_rect
         self.position = (x,y)
         self.game = game
     
